@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import styles from "./Nav.module.scss";
+
 type Props = {
   route?: string;
   children: React.ReactNode;
@@ -9,14 +10,18 @@ type Props = {
   onClick?: boolean | (() => void);
   style?: React.CSSProperties;
 };
+
 const NavItem = ({ children, route, end, dropdown, onClick, style }: Props) => {
   const router = useRouter();
+
   const navigate: React.MouseEventHandler<HTMLDivElement> = (event) => {
     if (typeof route === "string") {
       router.push(route);
     }
+
     event.stopPropagation();
   };
+
   return (
     <div
       style={style}
@@ -29,4 +34,5 @@ const NavItem = ({ children, route, end, dropdown, onClick, style }: Props) => {
     </div>
   );
 };
+
 export default NavItem;
